@@ -536,4 +536,8 @@ body {
         overflow: visible;
         text-overflow: clip;
     }
+    
+    .brand-subtitle .mobile-name {
+        display: block;
+    }
 }
