@@ -1,3 +1,533 @@
+/* ================================================================= */
+/* CSS VARIABLES & DESIGN TOKENS (NEON BLUE ACCENT)                  */
+/* ================================================================= */
+:root {
+    --bg-color: #000000;
+    --text-silver: #c0c0c0;
+    --text-bright: #ffffff;
+    --text-muted: #808080;
+    --accent-blue: #00bfff;
+    --accent-blue-glow: rgba(0, 191, 255, 0.35);
+    --nav-bg: rgba(0, 0, 0, 0.4);
+    --nav-bg-scrolled: rgba(0, 0, 0, 0.92);
+    --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --max-width: 1200px;
+}
+
+/* ================================================================= */
+/* RESET & BASE STYLES                                               */
+/* ================================================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-silver);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ================================================================= */
+/* NAVIGATION BAR (MEDIUM SIZED LOGO & AI CORE)                      */
+/* ================================================================= */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: var(--transition-smooth);
+}
+
+.site-header.scrolled {
+    background-color: var(--nav-bg-scrolled);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+/* Medium Sized Mini Nav AI Core */
+.nav-ai-core {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.core-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed var(--accent-blue);
+}
+
+.ring-1 {
+    width: 36px;
+    height: 36px;
+    animation: spinSlow 10s linear infinite;
+}
+
+.ring-2 {
+    width: 24px;
+    height: 24px;
+    border-color: rgba(255, 255, 255, 0.6);
+    animation: spinReverse 7s linear infinite;
+}
+
+.core-center-blink {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px var(--accent-blue);
+    border-radius: 50%;
+    animation: blinkEffect 1.5s infinite;
+}
+
+.brand-title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-logo {
+    color: var(--text-bright);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    transition: var(--transition-smooth);
+}
+
+.brand-xb {
+    color: var(--accent-blue);
+}
+
+.brand-logo:hover {
+    color: var(--accent-blue);
+}
+
+.brand-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Original colors for icons */
+.social-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.email-icon { color: #ea4335; }
+.github-icon { color: #ffffff; }
+.linkedin-icon { color: #0a66c2; }
+
+.social-icon-link:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+}
+
+.node-cluster {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    display: block;
+}
+
+.node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent-blue);
+    transition: var(--transition-smooth);
+}
+
+.node-1 { top: 0; left: 9px; }
+.node-2 { bottom: 0; left: 0; }
+.node-3 { bottom: 0; right: 0; }
+
+/* Mobile Fullscreen Drawer */
+.mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: right 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-drawer.active {
+    right: 0;
+}
+
+.drawer-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.drawer-link {
+    color: var(--text-bright);
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.drawer-link:hover {
+    color: var(--accent-blue);
+}
+
+/* ================================================================= */
+/* HERO SECTION (SINGLE SCREEN FOCUS)                                */
+/* ================================================================= */
+.hero-section {
+    padding: 8rem 2rem 3rem 2rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-container {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-bright);
+    margin-bottom: 2rem;
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-blue);
+    animation: pulseGlowBlue 2s infinite;
+}
+
+.hero-description {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--text-silver);
+    max-width: 800px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.hero-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Outline Box Download Button with Windows Icon */
+.outline-box-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2.2rem;
+    background: transparent;
+    color: var(--text-bright);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 16px;
+    border: 2px solid var(--accent-blue);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.15);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.outline-box-btn:hover {
+    background-color: rgba(0, 191, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px var(--accent-blue-glow);
+}
+
+.windows-logo-icon {
+    color: var(--accent-blue);
+    transition: var(--transition-smooth);
+}
+
+.outline-box-btn:hover .windows-logo-icon {
+    color: var(--text-bright);
+}
+
+.btn-subtext {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ================================================================= */
+/* LARGE ANIMATED NEON BLUE AI CORE                                  */
+/* ================================================================= */
+.ai-core-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.ai-core-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: coreBreath 4s ease-in-out infinite;
+}
+
+.orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border-style: solid;
+}
+
+.ring-outer {
+    width: 220px;
+    height: 220px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1) var(--accent-blue) transparent transparent;
+    animation: spinSlow 14s linear infinite;
+}
+
+.ring-middle {
+    width: 160px;
+    height: 160px;
+    border-width: 1.5px;
+    border-color: transparent rgba(255, 255, 255, 0.2) var(--accent-blue) transparent;
+    animation: spinReverse 9s linear infinite;
+}
+
+.ring-inner {
+    width: 100px;
+    height: 100px;
+    border-width: 2px;
+    border-color: var(--accent-blue) transparent transparent rgba(255, 255, 255, 0.3);
+    animation: spinSlow 6s linear infinite;
+}
+
+.core-metallic-center {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle at 30% 30%, #404040 0%, #101010 70%, #000000 100%);
+    border-radius: 50%;
+    border: 1px solid rgba(0, 191, 255, 0.5);
+    box-shadow: 0 0 20px var(--accent-blue-glow), inset 0 0 8px rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.energy-glow-blue {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    filter: blur(4px);
+    opacity: 0.6;
+}
+
+.core-center-point-blink {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffffff, 0 0 20px var(--accent-blue);
+    animation: blinkEffect 1.5s infinite;
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: var(--text-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-blue);
+}
+
+.p1 { animation: orbitParticle1 5s linear infinite; }
+.p2 { animation: orbitParticle2 7s linear infinite; }
+.p3 { animation: orbitParticle3 6s linear infinite; }
+.p4 { animation: orbitParticle4 8s linear infinite; }
+
+/* ================================================================= */
+/* FOOTER SECTION                                                    */
+/* ================================================================= */
+.site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #050505;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-bottom {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* ================================================================= */
+/* ANIMATION KEYFRAMES                                               */
+/* ================================================================= */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes blinkEffect {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes pulseGlowBlue {
+    0%, 100% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 15px var(--accent-blue); }
+    50% { transform: scale(1.15); opacity: 1; box-shadow: 0 0 35px var(--accent-blue); }
+}
+
+@keyframes coreBreath {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+@keyframes orbitParticle1 {
+    0% { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
+}
+
+@keyframes orbitParticle2 {
+    0% { transform: rotate(90deg) translateX(70px) rotate(-90deg); }
+    100% { transform: rotate(450deg) translateX(70px) rotate(-450deg); }
+}
+
+@keyframes orbitParticle3 {
+    0% { transform: rotate(180deg) translateX(50px) rotate(-180deg); }
+    100% { transform: rotate(540deg) translateX(50px) rotate(-540deg); }
+}
+
+@keyframes orbitParticle4 {
+    0% { transform: rotate(270deg) translateX(80px) rotate(-270deg); }
+    100% { transform: rotate(-90deg) translateX(80px) rotate(90deg); }
+}
+
+/* ================================================================= */
+/* RESPONSIVE DESIGN (MOBILE)                                        */
+/* ================================================================= */
+@media screen and (max-width: 767px) {
+    .nav-right { display: none; }
+    .mobile-menu-btn { display: block; }
+    .hero-section { padding: 7rem 1.25rem 2rem 1.25rem; }
+    .ai-core-wrapper { width: 180px; height: 180px; }
+    .ring-outer { width: 180px; height: 180px; }
+    .ring-middle { width: 130px; height: 130px; }
+    .ring-inner { width: 80px; height: 80px; }
+}
+
 @media screen and (max-width: 480px) {
     .brand-subtitle {
         font-size: 0.65rem;
@@ -11,4 +541,3 @@
         display: block;
     }
 }
-} /* <--- This extra bracket here breaks everything below it and hides your animations! */
